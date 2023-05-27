@@ -1,0 +1,24 @@
+{
+  "name": "periodic-self-commit-action",
+  "version": "1.0.0",
+  "description": "A repository that performs periodic self-commits.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jaivra/periodic-self-commit-action.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jaivra/periodic-self-commit-action/issues"
+  },
+  "homepage": "https://github.com/jaivra/periodic-self-commit-action#readme",
+  "dependencies": {
+    "@actions/core": "^1.10.0",
+    "@actions/github": "^5.1.1"
+  }
+}
