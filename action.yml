@@ -1,13 +1,14 @@
-name: 'Hello World'
-description: 'Greet someone and record the time'
+name: 'Distribution Value Generator'
+description: 'Generate a value from a given distribution'
+author: 'Valerio Cislaghi'
 inputs:
-  who-to-greet:  # id of input
-    description: 'Who to greet'
+  distribution:
+    description: 'Distribution to use'
     required: true
-    default: 'World'
+    #default: 'constant(10)'
 outputs:
-  time: # id of output
-    description: 'The time we greeted you'
+  values:
+    description: '' # Generated value from the distribution
 runs:
   using: 'node16'
   main: 'index.js'
