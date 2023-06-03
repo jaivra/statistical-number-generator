@@ -5,6 +5,11 @@ inputs:
   distribution:
     description: 'Distribution to use'
     required: true
+
+  count:
+    description: 'Number of values to generate'
+    required: false
+    default: 1
     #default: 'constant(10)'
 outputs:
   values:

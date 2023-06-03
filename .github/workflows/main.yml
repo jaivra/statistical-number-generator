@@ -9,11 +9,12 @@ jobs:
       # you must check out the repository
       - name: Checkout
         uses: actions/checkout@v3
-      - name: Hello world action step
+      - name: Distribution Value Generator
         uses: ./ # Uses an action in the root directory
-        id: hello
+        id: distribution_value_generator
         with:
           distribution: 'normal(10, 2)'
+          count: 4
       # Use the output from the `hello` step
-      - name: Get the output time
-        run: echo "The time was ${{ steps.hello.outputs.values }}"
+      - name: Print the generated values
+        run: echo "The generated value are ${{ steps.distribution_value_generator.outputs.values }}"

@@ -21,7 +21,7 @@ const DISTRIBUTION_PATTERN = /^(?<family>\w+)\((?<args>[^)]+)\)$/;
 
 try {
   // distribution
-  const count = 10;
+  const count = core.getInput('count');
   const distribution = core.getInput('distribution');
 
   const distr = parseDistribution(distribution, DISTRIBUTION_PATTERN);
