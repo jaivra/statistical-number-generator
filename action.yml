@@ -1,19 +1,22 @@
 name: 'Distribution Value Generator'
 description: 'Generate a value from a given distribution'
 author: 'Valerio Cislaghi'
+
 inputs:
   distribution:
     description: 'Distribution to use'
     required: true
-
   count:
     description: 'Number of values to generate'
     required: false
     default: 1
-    #default: 'constant(10)'
+    pattern: '^[1-9][0-9]*$'
+    error-message: 'The input must be a positive integer'
+
 outputs:
   values:
-    description: '' # Generated value from the distribution
+    description: 'generated values from the distribution'
+    
 runs:
   using: 'node16'
   main: 'dist/index.js'
