@@ -1,20 +1,25 @@
+# Trigger the workflow on push events
 on: [push]
 
+# Define a job named "hello_world_job"
 jobs:
-  hello_world_job:
+  # Job to generate values from a normal distribution
+  five-normal-values-job:
     runs-on: ubuntu-latest
     name: Generator of 5 values from a normal distribution with mean 10 and standard deviation 2
     steps:
-      # To use this repository's private action,
-      # you must check out the repository
+      # Step to check out the repository
       - name: Checkout
         uses: actions/checkout@v3
+      
+      # Step to generate distribution values
       - name: Distribution Value Generator
-        uses: ./ # Uses an action in the root directory
+        uses: ./ 
         id: distribution_value_generator
         with:
           distribution: 'normal(10, 2)'
           count: 5
-      # Use the output from the `hello` step
+      
+      # Step to print the generated values
       - name: Print the generated values
         run: echo "generated values = ${{ steps.distribution_value_generator.outputs.values }}"
