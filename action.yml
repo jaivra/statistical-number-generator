@@ -10,8 +10,6 @@ inputs:
     description: 'Number of values to generate'
     required: false
     default: 1
-    pattern: '^[1-9][0-9]*$'
-    error-message: 'The input must be a positive integer'
 
 outputs:
   values:

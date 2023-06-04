@@ -10123,8 +10123,9 @@ var __webpack_exports__ = {};
 const core = __nccwpck_require__(5127);
 const github = __nccwpck_require__(3134);
 
-const { getDistributionCreateFunction } = __nccwpck_require__(6588);
+const DISTRIBUTION_PATTERN = /^(?<family>\w+)\((?<args>[^)]+)\)$/;
 
+const { getDistributionCreateFunction } = __nccwpck_require__(6588);
 
 // function that given a distribution string, match it with the pattern and return the family and the arguments
 function parseDistribution(str, pattern) {
@@ -10139,22 +10140,41 @@ function parseDistribution(str, pattern) {
   return { family, args };
 }
 
-const DISTRIBUTION_PATTERN = /^(?<family>\w+)\((?<args>[^)]+)\)$/;
+function convertStringToPositiveInt(str) {
+  const num = parseInt(str, 10);
+  return Number.isInteger(num) && num > 0 ? num : null;
+}
+
 
 try {
   // distribution
-  const countValues = core.getInput('count');
+  const countValues = convertStringToPositiveInt(core.getInput('count'));
   const distribution = core.getInput('distribution');
 
+  if (!countValues) {
+    throw new Error('count must be a positive integer ' + typeof countValues);
+  }
+
   const distr = parseDistribution(distribution, DISTRIBUTION_PATTERN);
+
+  if (!distr) { // Pattern not found or no groups matched
+    throw new Error(`${distribution} distribution format not valid`);
+  }
 
   const distributionType = distr['family']
   const args = distr['args'];
 
-  const probFunc = getDistributionCreateFunction(distributionType)(...args);
-//probFunc = createGaussianDistribution(...args);
+  const createProbFun = getDistributionCreateFunction(distributionType);
 
+  // check if the distribution is valid with the right number of arguments
+  if (!createProbFun) {
+    throw new Error(`distribution ${distr['family']} is not recognized`);
+  }
+  if (args.length != createProbFun.length) {
+    throw new Error(`distribution ${distr['family']} requires ${createProbFun.length} arguments, while ${args.length} were provided`);
+  }
 
+  const probFunc = createProbFun(...args);
   const values = countValues == 1 ? probFunc() : Array.from({ length: countValues }, (_, i) => probFunc());
 
   core.setOutput("values", values);
