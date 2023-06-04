@@ -1,3 +1,6 @@
+// To generate dist file run ncc build src/index.js -o dist
+
+
 const core = require('@actions/core');
 const github = require('@actions/github');
 
@@ -32,7 +35,8 @@ try {
   const probFunc = getDistributionCreateFunction(distributionType)(...args);
 //probFunc = createGaussianDistribution(...args);
 
-  const values = Array.from({ length: countValues }, (_, i) => probFunc());
+
+  const values = countValues == 1 ? probFunc() : Array.from({ length: countValues }, (_, i) => probFunc());
 
   core.setOutput("values", values);
 

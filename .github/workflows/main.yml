@@ -3,7 +3,7 @@ on: [push]
 jobs:
   hello_world_job:
     runs-on: ubuntu-latest
-    name: A job to say hello
+    name: Generator of 5 values from a normal distribution with mean 10 and standard deviation 2
     steps:
       # To use this repository's private action,
       # you must check out the repository
@@ -14,7 +14,7 @@ jobs:
         id: distribution_value_generator
         with:
           distribution: 'normal(10, 2)'
-          count: 1
+          count: 5
       # Use the output from the `hello` step
       - name: Print the generated values
-        run: echo "The generated value are ${{ steps.distribution_value_generator.outputs.values }}"
+        run: echo "generated values = ${{ steps.distribution_value_generator.outputs.values }}"

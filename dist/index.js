@@ -10071,6 +10071,9 @@ module.exports = JSON.parse('[[[0,44],"disallowed_STD3_valid"],[[45,46],"valid"]
 var __webpack_exports__ = {};
 // This entry need to be wrapped in an IIFE because it need to be isolated against other modules in the chunk.
 (() => {
+// To generate dist file run ncc build src/index.js -o dist
+
+
 const core = __nccwpck_require__(5127);
 const github = __nccwpck_require__(3134);
 
@@ -10105,7 +10108,8 @@ try {
   const probFunc = getDistributionCreateFunction(distributionType)(...args);
 //probFunc = createGaussianDistribution(...args);
 
-  const values = Array.from({ length: countValues }, (_, i) => probFunc());
+
+  const values = countValues == 1 ? probFunc() : Array.from({ length: countValues }, (_, i) => probFunc());
 
   core.setOutput("values", values);
 
