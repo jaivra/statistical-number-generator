@@ -1,5 +1,45 @@
+// Description: This file contains the code for the distributions used in the action
+
+// Map of distribution names to their create function 
+const distributionMap = new Map([
+  ["constant", createConstantDistribution],
+  ["gaussian", createGaussianDistribution],
+  ["normal", createGaussianDistribution],
+  ["exponential", createExponentialDistribution],
+  ["uniform", createUniformDistribution],
+  ["poisson", createPoissonDistribution],
+  ["bernoulli", createBernoulliDistribution],
+  ["binomial", createBinomialDistribution],
+  ["geometric", createGeometricDistribution],
+  ["negativebinomial", createNegativeBinomialDistribution],
+  ["hypergeometric", createHypergeometricDistribution],
+  ["triangular", createTriangularDistribution],
+  ["lognormal", createLogNormalDistribution],
+  ["weibull", createWeibullDistribution],
+  ["gamma", createGammaDistribution],
+  ["erlang", createErlangDistribution],
+  ["chisquare", createChiSquareDistribution],
+  ["studentt", createStudentTDistribution],
+  ["f", createFDistribution],
+  ["exponentialpower", createExponentialPowerDistribution],
+  ["loglogistic", createLogLogisticDistribution],
+  ["pareto", createParetoDistribution],
+  ["beta", createBetaDistribution]
+]);
+
+
+// Function that given a distribution name, returns the create function
+function getDistributionCreateFunction(distributionName) {
+  return distributionMap.get(distributionName.toLowerCase()) || null;
+}
+
+
+
+
 function getDistributionCreateFunction(distributionName) {
     switch (distributionName.toLowerCase()) {
+      case "constant":
+        return createConstantDistribution;
       case "gaussian":
       case "normal":
         return createGaussianDistribution;
@@ -49,9 +89,15 @@ function getDistributionCreateFunction(distributionName) {
   }
 
   module.exports = {
-    getDistributionCreateFunction,
-    // Other exports...
+    getDistributionCreateFunction
   };
+
+// Constant Distribution
+function createConstantDistribution(value) {
+    return function() {
+      return value; // Always return the same value
+    };
+  }
 
 // Gaussian (Normal) Distribution
 function createGaussianDistribution(mean, standardDeviation) {

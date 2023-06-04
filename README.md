@@ -1,1 +1,2 @@
-# My first action
+#Statistical number generator
+This action 
