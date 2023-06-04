@@ -21,7 +21,7 @@ const DISTRIBUTION_PATTERN = /^(?<family>\w+)\((?<args>[^)]+)\)$/;
 
 try {
   // distribution
-  const count = core.getInput('count');
+  const countValues = core.getInput('count');
   const distribution = core.getInput('distribution');
 
   const distr = parseDistribution(distribution, DISTRIBUTION_PATTERN);
@@ -32,7 +32,7 @@ try {
   const probFunc = getDistributionCreateFunction(distributionType)(...args);
 //probFunc = createGaussianDistribution(...args);
 
-  const values = Array.from({ length: 10 }, (_, i) => probFunc());
+  const values = Array.from({ length: countValues }, (_, i) => probFunc());
 
   core.setOutput("values", values);
 

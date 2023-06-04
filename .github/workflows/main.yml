@@ -14,7 +14,7 @@ jobs:
         id: distribution_value_generator
         with:
           distribution: 'normal(10, 2)'
-          count: 4
+          count: 1
       # Use the output from the `hello` step
       - name: Print the generated values
         run: echo "The generated value are ${{ steps.distribution_value_generator.outputs.values }}"
