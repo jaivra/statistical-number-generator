@@ -1,0 +1,24 @@
+name: Build Distribution
+on:
+  push:
+    branches:
+      - main # Change this to the branch you want to trigger the build on
+  pull_request:
+    branches:
+      - main # Change this to the branch you want to trigger the build on
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Build distribution
+        run: ncc build src -o dist
+
+     

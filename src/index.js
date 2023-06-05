@@ -17,7 +17,7 @@ function parseDistribution(str, pattern) {
   }
   const family = match.groups.family;
   //split the args by , to obtain a list
-  const args = match.groups.args.split(',').map(Number);;
+  const args = match.groups.args.split(',.').map(Number);;
   return { family, args };
 }
 
