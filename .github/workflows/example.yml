@@ -1,3 +1,5 @@
+name: Generate and Print Normal Distribution Values
+
 # Trigger the workflow on push events
 on: [push]
 

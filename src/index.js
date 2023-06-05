@@ -17,7 +17,7 @@ function parseDistribution(str, pattern) {
   }
   const family = match.groups.family;
   //split the args by , to obtain a list
-  const args = match.groups.args.split(',.').map(Number);;
+  const args = match.groups.args.split(',').map(Number);;
   return { family, args };
 }
 
@@ -39,7 +39,7 @@ try {
   const distr = parseDistribution(distribution, DISTRIBUTION_PATTERN);
 
   if (!distr) { // Pattern not found or no groups matched
-    throw new Error(`${distribution} distribution format not valid`);
+    throw new Error(`${distribution} distribution format is not valid`);
   }
 
   const distributionType = distr['family']
@@ -60,7 +60,6 @@ try {
 
   core.setOutput("values", values);
 
-  // Get the JSON webhook payload for the event that triggered the workflow
 } catch (error) {
   core.setFailed(error.message);
 }
