@@ -2,11 +2,19 @@ name: Build Distribution
 
 on:
   push:
-    branches:
-      - main # Change this to the branch you want to trigger the build on
+    branches: [main]
+    paths-ignore:
+      - 'README.md'
+      - 'docs/**'
   pull_request:
-    branches:
-      - main # Change this to the branch you want to trigger the build on
+    branches: [main]
+    paths-ignore:
+      - 'README.md'
+      - 'docs/**'
+
+permissions:
+  pull-requests: write
+  contents: write
 
 jobs:
   build:
@@ -16,19 +24,42 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v3
 
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 16.x
+
       - name: Install dependencies
-        run: npm install
+        run: npm ci
 
       - name: Build distribution
-        run: npx ncc build src -o dist ; pwd; ls
+        run: npm run build
       
       - name: Archive distribution
         uses: actions/upload-artifact@v3
         with:
           name: dist
-          path: dist/
+          path: dist
 
-      - name: Check permissions of a specific directory
-        run: ls -ld dist
+  package:
+    needs: [build]
+    runs-on: ubuntu-latest
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - uses: actions/download-artifact@v3
+        with:
+          name: dist
+          path: dist
+
+      - name: Create Pull Request
+        uses: peter-evans/create-pull-request@v3
+        with:
+          token: ${{ secrets.TOKEN }}
+          branch: dist-update
+          title: Update Dist Folder
+          body: Automated update of the dist folder
 
      
