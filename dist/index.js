@@ -386,12 +386,10 @@ module.exports = eval("require")("@actions/github");
 var __webpack_exports__ = {};
 // This entry need to be wrapped in an IIFE because it need to be isolated against other modules in the chunk.
 (() => {
-// To generate dist file run ncc build src/index.js -o dist
-
-
 const core = __nccwpck_require__(396);
 const github = __nccwpck_require__(716);
 
+// pattern to match the distribution and extract the family and the arguments
 const DISTRIBUTION_PATTERN = /^(?<family>\w+)\((?<args>[^)]+)\)$/;
 
 const { getDistributionCreateFunction } = __nccwpck_require__(571);
@@ -426,8 +424,9 @@ try {
 
   const distr = parseDistribution(distribution, DISTRIBUTION_PATTERN);
 
-  if (!distr) { // Pattern not found or no groups matched
-    throw new Error(`${distribution} distribution format is not valid`);
+  // Pattern not found or no groups matched
+  if (!distr) { 
+    throw new Error(`${distribution} distribution format not valid`);
   }
 
   const distributionType = distr['family']
