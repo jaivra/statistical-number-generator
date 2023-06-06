@@ -426,8 +426,9 @@ try {
 
   const distr = parseDistribution(distribution, DISTRIBUTION_PATTERN);
 
-  if (!distr) { // Pattern not found or no groups matched
-    throw new Error(`${distribution} distribution format is not valid`);
+  // Pattern not found or no groups matched
+  if (!distr) { 
+    throw new Error(`${distribution} distribution format not valid`);
   }
 
   const distributionType = distr['family']
