@@ -50,6 +50,7 @@
     "wrappy": "^1.0.2"
   },
   "scripts": {
+    "build": "ncc build src -o dist",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
