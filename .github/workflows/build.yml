@@ -60,11 +60,12 @@ jobs:
           path: dist
 
       - name: Create Pull Request
-        uses: peter-evans/create-pull-request@v3
+        uses: peter-evans/create-pull-request@v5
         with:
           token: ${{ secrets.TOKEN }}
           branch: dist-update
           title: Update Dist Folder
           body: Automated update of the dist folder
-
+          committer: GitHub <noreply@github.com>
+          author: ${{ github.actor }} <${{ github.actor }}@users.noreply.github.com>
      
