@@ -86,3 +86,6 @@ Please note that you don't need to generate the `dist` folder yourself. Once you
 Thank you for your interest in our project! If you have any questions or need assistance, feel free to open an issue or reach out to us.
 
 Happy coding!
+
+## License
+statistical-number-generator is distributed under the MIT License. See LICENSE for more information.
