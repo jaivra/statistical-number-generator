@@ -3,14 +3,17 @@ name: Build Distribution
 on:
   push:
     branches: [main]
-    paths-ignore:
-      - 'README.md'
-      - 'docs/**'
+    paths:
+      - 'src/**'
+      - 'package.json'
+      - 'package-lock.json'
+
   pull_request:
     branches: [main]
-    paths-ignore:
-      - 'README.md'
-      - 'docs/**'
+    paths:
+      - 'src/**'
+      - 'package.json'
+      - 'package-lock.json'
 
 permissions:
   pull-requests: write
@@ -59,21 +62,10 @@ jobs:
           name: dist
           path: dist
       
-      - name: GIT Commit Build Artifacts (coverage, dist, devdist, docs)
-        # Only run on main branch push (e.g. after pull request merge).
+      - name: git push dist folder
         if: github.event_name == 'push'
         run: |
           git config --global user.name "${{ github.actor }}"
           git config --global user.email "<${{ github.actor }}@users.noreply.github.com>"
-          git commit -a -m "Update Dist Folder"
+          git commit -a -m "[bot] Update Dist Folder"
           git push
-      #- name: Create Pull Request
-      #  uses: peter-evans/create-pull-request@v5
-      #  with:
-      #    token: ${{ secrets.TOKEN }}
-      #    branch: main
-      #    title: Update Dist Folder
-      #    body: Automated update of the dist folder
-      #    committer: GitHub <noreply@github.com>
-      #    author: ${{ github.actor }} <${{ github.actor }}@users.noreply.github.com>
-     

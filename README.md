@@ -78,3 +78,11 @@ The `funcToCreateDistribution` function accepts 'n' arguments representing the p
 To understand how to implement this, you can refer to the existing functions in the file, which demonstrate the pattern. Please follow the same structure and approach when adding your new distribution function.
 
 Feel free to experiment and extend the available distributions by adding your own custom ones according to your specific requirements.
+
+## Note
+
+Please note that you don't need to generate the `dist` folder yourself. Once your changes are pushed to GitHub, the CI/CD pipeline will automatically build and generate the necessary artifacts, including the `dist` folder. This ensures that the latest version of the project is always available to users without any manual intervention.
+
+Thank you for your interest in our project! If you have any questions or need assistance, feel free to open an issue or reach out to us.
+
+Happy coding!
