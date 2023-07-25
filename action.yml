@@ -1,4 +1,4 @@
-name: 'Distribution Value Generator'
+name: 'Statistical Number Generator'
 description: 'Generate a value from a given distribution'
 author: 'Valerio Cislaghi'
 
@@ -13,7 +13,7 @@ inputs:
 
 outputs:
   values:
-    description: 'generated values from the distribution'
+    description: 'Generated values from the distribution'
     
 runs:
   using: 'node16'
