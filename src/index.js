@@ -56,7 +56,7 @@ try {
 
   const probFunc = createProbFun(...args);
   const values = countValues == 1 ? probFunc() : Array.from({ length: countValues }, (_, i) => probFunc());
-
+  const tmp = "ciao";
   core.setOutput("values", values);
 
 } catch (error) {

@@ -58,13 +58,22 @@ jobs:
         with:
           name: dist
           path: dist
-
-      - name: Create Pull Request
-        uses: peter-evans/create-pull-request@v3
-        with:
-          token: ${{ secrets.TOKEN }}
-          branch: dist-update
-          title: Update Dist Folder
-          body: Automated update of the dist folder
-
+      
+      - name: GIT Commit Build Artifacts (coverage, dist, devdist, docs)
+        # Only run on main branch push (e.g. after pull request merge).
+        if: github.event_name == 'push'
+        run: |
+          git config --global user.name "${{ github.actor }}"
+          git config --global user.email "<${{ github.actor }}@users.noreply.github.com>"
+          git commit -a -m "Update Dist Folder"
+          git push
+      #- name: Create Pull Request
+      #  uses: peter-evans/create-pull-request@v5
+      #  with:
+      #    token: ${{ secrets.TOKEN }}
+      #    branch: main
+      #    title: Update Dist Folder
+      #    body: Automated update of the dist folder
+      #    committer: GitHub <noreply@github.com>
+      #    author: ${{ github.actor }} <${{ github.actor }}@users.noreply.github.com>
      
