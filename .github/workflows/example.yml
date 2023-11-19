@@ -10,9 +10,11 @@ jobs:
     runs-on: ubuntu-latest
     name: Generator of 5 values from a normal distribution with mean 10 and standard deviation 2
     steps:
-      # Step to generate distribution values
+      - name: Checkout
+        uses: actions/checkout@v4
+      # Step to generate distribution values gf
       - name: Statistical Number Generator
-        uses: jaivra/statistical-number-generator@v0.9
+        uses: ./
         id: statistical_number_generator
         with:
           distribution: 'normal(10, 2)'
