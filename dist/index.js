@@ -30685,6 +30685,7 @@ try {
   }
 
   const probFunc = createProbFun(...args);
+  // if the count is 1, return a single value, otherwise return an array of values
   const values = countValues == 1 ? probFunc() : Array.from({ length: countValues }, (_, i) => probFunc());
   core.setOutput("values", values);
 
