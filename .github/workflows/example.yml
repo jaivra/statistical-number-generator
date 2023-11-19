@@ -1,7 +1,16 @@
 name: Generate and Print Normal Distribution Values
 
 # Trigger the workflow on push events
-on: [push]
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'dist/**'
+
+  pull_request:
+    branches: [main]
+    paths:
+      - 'dist/**'
 
 # Define a job named "hello_world_job"
 jobs:
