@@ -1,7 +1,7 @@
 /******/ (() => { // webpackBootstrap
 /******/ 	var __webpack_modules__ = ({
 
-/***/ 571:
+/***/ 588:
 /***/ ((module) => {
 
 // Description: This file contains the code for the distributions used in the action
@@ -34,69 +34,14 @@ const distributionMap = new Map([
 ]);
 
 
-// Function that given a distribution name, returns the create function
+// Function that given a distribution name, returns the create function for that distribution
 function getDistributionCreateFunction(distributionName) {
   return distributionMap.get(distributionName.toLowerCase()) || null;
 }
 
-
-
-
-function getDistributionCreateFunction(distributionName) {
-    switch (distributionName.toLowerCase()) {
-      case "constant":
-        return createConstantDistribution;
-      case "gaussian":
-      case "normal":
-        return createGaussianDistribution;
-      case "exponential":
-        return createExponentialDistribution;
-      case "uniform":
-        return createUniformDistribution;
-      case "poisson":
-        return createPoissonDistribution;
-      case "bernoulli":
-        return createBernoulliDistribution;
-      case "binomial":
-        return createBinomialDistribution;
-      case "geometric":
-        return createGeometricDistribution;
-      case "negativebinomial":
-        return createNegativeBinomialDistribution;
-      case "hypergeometric":
-        return createHypergeometricDistribution;
-      case "triangular":
-        return createTriangularDistribution;
-      case "lognormal":
-        return createLogNormalDistribution;
-      case "weibull":
-        return createWeibullDistribution;
-      case "gamma":
-        return createGammaDistribution;
-      case "erlang":
-        return createErlangDistribution;
-      case "chisquare":
-        return createChiSquareDistribution;
-      case "studentt":
-        return createStudentTDistribution;
-      case "f":
-        return createFDistribution;
-      case "exponentialpower":
-        return createExponentialPowerDistribution;
-      case "loglogistic":
-        return createLogLogisticDistribution;
-      case "pareto":
-        return createParetoDistribution;
-      case "beta":
-        return createBetaDistribution;
-      default:
-        return null;
-    }
-  }
-
-  module.exports = {
-    getDistributionCreateFunction
-  };
+module.exports = {
+  getDistributionCreateFunction
+};
 
 // Constant Distribution
 function createConstantDistribution(value) {
@@ -329,7 +274,7 @@ function createGaussianDistribution(mean, standardDeviation) {
 
 /***/ }),
 
-/***/ 396:
+/***/ 105:
 /***/ ((module) => {
 
 module.exports = eval("require")("@actions/core");
@@ -337,7 +282,7 @@ module.exports = eval("require")("@actions/core");
 
 /***/ }),
 
-/***/ 716:
+/***/ 82:
 /***/ ((module) => {
 
 module.exports = eval("require")("@actions/github");
@@ -386,13 +331,13 @@ module.exports = eval("require")("@actions/github");
 var __webpack_exports__ = {};
 // This entry need to be wrapped in an IIFE because it need to be isolated against other modules in the chunk.
 (() => {
-const core = __nccwpck_require__(396);
-const github = __nccwpck_require__(716);
+const core = __nccwpck_require__(105);
+const github = __nccwpck_require__(82);
 
 // pattern to match the distribution and extract the family and the arguments
 const DISTRIBUTION_PATTERN = /^(?<family>\w+)\((?<args>[^)]+)\)$/;
 
-const { getDistributionCreateFunction } = __nccwpck_require__(571);
+const { getDistributionCreateFunction } = __nccwpck_require__(588);
 
 // function that given a distribution string, match it with the pattern and return the family and the arguments
 function parseDistribution(str, pattern) {

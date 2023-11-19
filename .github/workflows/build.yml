@@ -36,7 +36,7 @@ jobs:
         run: npm ci
 
       - name: Build distribution
-        run: ncc build src/index.js 
+        run: npm run build
       
       - name: Archive distribution
         uses: actions/upload-artifact@v3
