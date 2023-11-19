@@ -28,69 +28,14 @@ const distributionMap = new Map([
 ]);
 
 
-// Function that given a distribution name, returns the create function
+// Function that given a distribution name, returns the create function for that distribution
 function getDistributionCreateFunction(distributionName) {
   return distributionMap.get(distributionName.toLowerCase()) || null;
 }
 
-
-
-
-function getDistributionCreateFunction(distributionName) {
-    switch (distributionName.toLowerCase()) {
-      case "constant":
-        return createConstantDistribution;
-      case "gaussian":
-      case "normal":
-        return createGaussianDistribution;
-      case "exponential":
-        return createExponentialDistribution;
-      case "uniform":
-        return createUniformDistribution;
-      case "poisson":
-        return createPoissonDistribution;
-      case "bernoulli":
-        return createBernoulliDistribution;
-      case "binomial":
-        return createBinomialDistribution;
-      case "geometric":
-        return createGeometricDistribution;
-      case "negativebinomial":
-        return createNegativeBinomialDistribution;
-      case "hypergeometric":
-        return createHypergeometricDistribution;
-      case "triangular":
-        return createTriangularDistribution;
-      case "lognormal":
-        return createLogNormalDistribution;
-      case "weibull":
-        return createWeibullDistribution;
-      case "gamma":
-        return createGammaDistribution;
-      case "erlang":
-        return createErlangDistribution;
-      case "chisquare":
-        return createChiSquareDistribution;
-      case "studentt":
-        return createStudentTDistribution;
-      case "f":
-        return createFDistribution;
-      case "exponentialpower":
-        return createExponentialPowerDistribution;
-      case "loglogistic":
-        return createLogLogisticDistribution;
-      case "pareto":
-        return createParetoDistribution;
-      case "beta":
-        return createBetaDistribution;
-      default:
-        return null;
-    }
-  }
-
-  module.exports = {
-    getDistributionCreateFunction
-  };
+module.exports = {
+  getDistributionCreateFunction
+};
 
 // Constant Distribution
 function createConstantDistribution(value) {
