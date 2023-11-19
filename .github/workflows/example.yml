@@ -11,13 +11,13 @@ jobs:
     name: Generator of 5 values from a normal distribution with mean 10 and standard deviation 2
     steps:
       # Step to generate distribution values
-      - name: Statistical Value Generator
+      - name: Statistical Number Generator
         uses: jaivra/statistical-number-generator@v0.9
-        id: statistical_value_generator
+        id: statistical_number_generator
         with:
           distribution: 'normal(10, 2)'
           count: 5
       
       # Step to print the generated values
       - name: Print the generated values
-        run: echo "generated values = ${{ steps.statistical_value_generator.outputs.values }}"
+        run: echo "generated values = ${{ steps.statistical_number_generator.outputs.values }}"
