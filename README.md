@@ -52,13 +52,9 @@ five-normal-values-job:
   runs-on: ubuntu-latest
   name: Generator of 5 values from a normal distribution with mean 10 and standard deviation 2
   steps:
-    # Step to check out the repository
-    - name: Checkout
-      uses: actions/checkout@v3
-    
     # Step to generate distribution values
     - name: Distribution Value Generator
-      uses: ./
+      uses: jaivra/statistical-number-generator@v0.91
       id: distribution_value_generator
       with:
         distribution: 'normal(10, 2)'
