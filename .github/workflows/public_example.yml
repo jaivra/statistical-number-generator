@@ -1,0 +1,23 @@
+name: Generate and Print Normal Distribution Values
+
+# Trigger the workflow on push events
+on: [push]
+
+# Define a job named "hello_world_job"
+jobs:
+  # Job to generate values from a normal distribution
+  five-normal-values-job:
+    runs-on: ubuntu-latest
+    name: Generator of 5 values from a normal distribution with mean 10 and standard deviation 2
+    steps:
+      # Step to generate distribution values and store them in the outputs context
+      - name: Statistical Number Generator
+        uses: jaivra/statistical-number-generator@v0.91
+        id: statistical_number_generator
+        with:
+          distribution: 'normal(10, 2)'
+          count: 5
+      
+      # Step to print the generated values
+      - name: Print the generated values
+        run: echo "generated values = ${{ steps.statistical_number_generator.outputs.values }}"
