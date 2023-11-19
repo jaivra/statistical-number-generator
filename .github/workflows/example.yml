@@ -12,7 +12,7 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-      # Step to generate distribution values gf
+      # Step to generate distribution values and store them in the outputs context
       - name: Statistical Number Generator
         uses: ./
         id: statistical_number_generator
